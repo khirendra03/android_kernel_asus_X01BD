@@ -20,7 +20,7 @@ ccflags-y += -nostdlib -Wl,-soname=linux-vdso.so.1 \
 		$(call cc-ldoption, -Wl$(comma)--hash-style=sysv)
 
 # Force -O2 to avoid libgcc dependencies
-CFLAGS_REMOVE_vgettimeofday.o = -pg -Os
+CFLAGS_REMOVE_vgettimeofday.o = -pg -Os $(GCC_PLUGINS_CFLAGS) \
 CFLAGS_vgettimeofday.o = -O2 -fPIC
 ifneq ($(cc-name),clang)
 CFLAGS_vgettimeofday.o += -mcmodel=tiny
